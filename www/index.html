@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="es">
+
+    <head><meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="assets/app.js"></script>
+        <script src="assets/uikit.js"></script>
+        <script src="assets/uikit-icon.js"></script>
+        <link rel="stylesheet" href="assets/uikit.css" />
+
+        <link rel="stylesheet" href="main.css">
+        <script src="main.js"></script>
+
+        <title> Screen Draw Client </title>
+    </head>
+
+    <body class="uk-background-secondary uk-light uk-flex uk-flex-row" 
+          uk-height-viewport="expand">
+
+        <div class="uk-padding-small uk-width-expand uk-inline">
+            <a class="uk-position-topleft uk-padding-small" 
+               uk-toggle="target: #offcanvas-usage"    
+               uk-icon="menu" ></a>
+            <canvas screen></canvas>
+        </div>
+
+        <div id="offcanvas-usage" uk-offcanvas>
+            <div class="uk-offcanvas-bar">
+                <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <div class="uk-flex uk-flex-column">
+                <h2> Settings </h2>
+
+                <div class="uk-child-width-1-5 uk-flex uk-flex-wrap uk-padding-small uk-padding-remove-horizontal"> 
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/block.svg);"  onclick="state.mde=4"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/brush.svg);"  onclick="state.mde=0"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/line.svg);"   onclick="state.mde=1"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/circle.svg);" onclick="state.mde=2"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/rect.svg);"   onclick="state.mde=3"></a>
+                </div>
+
+                <div class="uk-child-width-1-4 uk-flex uk-flex-wrap uk-padding-small uk-padding-remove-horizontal"> 
+                    <a b1  class="uk-flex uk-flex-center" onclick="state.col=[255,255,255]"><div></div></a>
+                    <a b2  class="uk-flex uk-flex-center" onclick="state.col=[255,  0,  0]"><div></div></a>
+                    <a b3  class="uk-flex uk-flex-center" onclick="state.col=[  0,255,  0]"><div></div></a>
+                    <a b4  class="uk-flex uk-flex-center" onclick="state.col=[  0,  0,255]"><div></div></a>
+                </div>
+
+                <div class="uk-child-width-1-4 uk-flex uk-flex-wrap uk-padding-small uk-padding-remove-horizontal"> 
+                    <a b5  class="uk-flex uk-flex-center" onclick="state.col=[255,255,  0]"><div></div></a>
+                    <a b6  class="uk-flex uk-flex-center" onclick="state.col=[255,  0,255]"><div></div></a>
+                    <a b7  class="uk-flex uk-flex-center" onclick="state.col=[155,155,155]"><div></div></a>
+                    <a b8  class="uk-flex uk-flex-center" onclick="state.col=[  0,  0,  0]"><div></div></a>
+                </div>
+
+                <div class="uk-child-width-1-5 uk-flex uk-flex-wrap uk-padding-small uk-padding-remove-horizontal"> 
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/size1.svg);" onclick="state.siz=1"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/size2.svg);" onclick="state.siz=2"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/size3.svg);" onclick="state.siz=4"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/size4.svg);" onclick="state.siz=6"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/size5.svg);" onclick="state.siz=8"></a>
+                </div>
+
+                <div class="uk-child-width-1-5 uk-flex uk-flex-wrap uk-padding-small uk-padding-remove-horizontal"> 
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/screen.svg);" onclick="$('body').requestFullscreen()"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/eraser.svg);" onclick="state.mde=5"></a>
+                    <a class="uk-icon uk-icon-image" style="background-image: url(./icon/trash.svg);"  onclick="app.fetch(`${window.origin}?cmd=clear`);"></a>
+                </div>
+
+                <div class="uk-padding-small uk-padding-remove-horizontal"> 
+                <input class="uk-range" type="color"
+                       onchange="app.fetch(`${window.origin}?color=${this.value.slice(1)}`);" >
+                </div>
+
+                <div class="uk-padding-small uk-padding-remove-horizontal">  
+                <input class="uk-range" type="range" value="0" min="0" max="100" step="1"
+                       onchange="app.fetch(`${window.origin}?opacity=${this.value}`);" >
+                </div>
+
+            </div></div>
+        </div>
+
+    </body>
+
+</html>

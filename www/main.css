@@ -1,0 +1,58 @@
+[screen] {
+    image-rendering: pixelated;
+    background-color: black;
+    border-radius: 10px;
+    height: 100%;
+    width:  100%;
+}
+
+* { user-select: none; }
+
+[b1]>*{  
+    background-color: rgb( 255, 255, 255 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b2]>*{  
+    background-color: rgb( 255, 0, 0 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b3]>*{  
+    background-color: rgb( 0, 255, 0 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b4]>*{  
+    background-color: rgb( 0, 0, 255 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b5]>*{  
+    background-color: rgb( 255, 255, 0 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b6]>*{  
+    background-color: rgb( 255, 0, 255 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b7]>*{  
+    background-color: rgb( 155, 155, 155 );
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
+
+[b8]>*{  
+    background-color: rgb( 0, 0, 0 );
+    align-content: center;
+    width: 10px; height: 10px;
+    border-radius: 10px;
+}
