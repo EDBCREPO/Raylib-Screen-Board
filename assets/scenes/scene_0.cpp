@@ -7,7 +7,7 @@ namespace rl { namespace scene {
         auto url = GetAttr("url").as<string_t>();
         auto a   = ptr_t<uint>({ 0, 360, 0 });
 
-        SetWindowSize( 300, 350 ); /*
+        SetWindowSize( 300, 325 ); /*
         ClearWindowState( FLAG_WINDOW_MOUSE_PASSTHROUGH |
                               FLAG_WINDOW_UNDECORATED   | 
                               FLAG_WINDOW_TOPMOST       |
@@ -17,10 +17,17 @@ namespace rl { namespace scene {
 
         self->onDraw([=](){
             ClearBackground({ 40, 40, 40, 255 });
+
+            DrawText( url.get(), 20, 10, 20, WHITE );
+            DrawText( "waiting new device", 60, 265, 20, WHITE );
+
+            for( auto x=20; x<100; x+=20 )
+               { DrawCircleLines( 150, 150, x, DARKGRAY ); }
+
+            DrawCircle( 150, 150, 5, WHITE );
             DrawCircleLines( 150, 150, 100, WHITE );
             DrawCircleLines( 150, 150, a[2], WHITE );
-            DrawText( url.get(), 30, 10, 20, WHITE );
-            DrawText( "waiting new device", 60, 265, 20, WHITE );
+
             DrawCircleSectorLines( { 150, 150 }, 100, a[0], a[1], 30, WHITE );
         });
 

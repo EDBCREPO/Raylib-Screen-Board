@@ -9,7 +9,7 @@ using namespace nodepp;
 
 void onMain() {
 
-    rl::Init( { 300, 350 }, 60, "Raylib Screen Board" );
+    rl::Init( { 300, 325 }, 60, "Raylib Screen Board" );
 
     rl::AppendScene( rl::scene::scene_0 );
 

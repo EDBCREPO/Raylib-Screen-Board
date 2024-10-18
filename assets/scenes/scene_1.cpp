@@ -29,7 +29,7 @@ namespace rl { namespace scene {
 
         auto X  = GetCurrentMonitor();
         auto Sx = 300; // GetMonitorWidth(X);
-        auto Sy = 350; // GetMonitorHeight(X);
+        auto Sy = 325; // GetMonitorHeight(X);
 
         SetWindowSize( Sx, Sy ); /*
         SetWindowState( FLAG_WINDOW_MOUSE_PASSTHROUGH |
@@ -161,6 +161,7 @@ namespace rl { namespace scene {
         });
 
         self->onRemove([=](){
+            if( WindowShouldClose() ){ return; }
             process::clear( ids );
             process::clear( ide );
         });
