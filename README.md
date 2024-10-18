@@ -8,7 +8,8 @@ It is a simple raylib app that let you draw in your computer using an external d
 ```
 
 ## Preview
-[preview](https://github.com/user-attachments/assets/dcf329d3-2d71-4608-bffd-c5cdb6c0775f)
+[preview](https://github.com/user-attachments/assets/d139413f-16e2-4f79-b030-4e3444703330)
+
 
 ## Build & Use
 ```bash
