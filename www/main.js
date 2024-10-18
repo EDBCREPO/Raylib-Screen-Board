@@ -21,8 +21,8 @@ function init( server ) {
 
     app.addEvent( $("[screen]"), "touchstart", (ev)=>{
         ev.preventDefault(); state.end = [
-            Number(ev.touches[0].clientX.toFixed(6)), 
-            Number(ev.touches[0].clientY.toFixed(6)) 
+            ev.touches[0].clientX.toFixed(6), 
+            ev.touches[0].clientY.toFixed(6) 
         ];  state.scr = [
             $("[screen]").clientWidth,
             $("[screen]").clientHeight,
@@ -33,8 +33,8 @@ function init( server ) {
 
     app.addEvent( $("[screen]"), "touchmove", (ev)=>{
         ev.preventDefault(); state.end = [
-            Number(ev.touches[0].clientX.toFixed(6)), 
-            Number(ev.touches[0].clientY.toFixed(6)) 
+            ev.touches[0].clientX.toFixed(6), 
+            ev.touches[0].clientY.toFixed(6) 
         ];  state.ste = 1;
     });
 
@@ -62,32 +62,14 @@ window.onload = ()=>{
         init( server );
     };
 
-    server.onmessage = ({data})=>{
-        if( data == "updated" ){
-            let ctx     = $("canvas").getContext("2d");
-            let img     = new Image;
-                img.src = `${window.origin}/image.png`;
-            img.onload = ()=>{ ctx.reset();
-                ctx.webkitImageSmoothingEnabled = false;
-                ctx.mozImageSmoothingEnabled = false;
-                ctx.imageSmoothingEnabled = false;
-                ctx.drawImage( img, 0, 0, $("canvas").width, $("canvas").height );
-            }
-        }   console.log( data );
-    };
-
     server.onclose = ()=>{
         console.log("disconnected");
-        setTimeout(()=>{
-            window.location.reload();
-        },10000);
+        setTimeout(()=>{ window.location.reload(); },10000);
     };
 
     server.onerror = ()=>{
         console.log("something went wrong");
-        setTimeout(()=>{
-            window.location.reload();
-        },10000);
+        setTimeout(()=>{ window.location.reload(); },10000);
     }
 
 };

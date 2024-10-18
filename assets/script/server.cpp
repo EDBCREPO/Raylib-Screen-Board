@@ -8,23 +8,18 @@
 #include <nodepp/http.h>
 #include <nodepp/path.h>
 #include <nodepp/dns.h>
-#include <nodepp/fs.h>
 #include <nodepp/ws.h>
-
-#include <game/game.h>
+#include <nodepp/fs.h>
 
 /*────────────────────────────────────────────────────────────────────────────*/
 
-namespace server {
-    using namespace nodepp;
-    
-    /*─······································································─*/
+namespace server { using namespace nodepp;
 
-    event_t<>         onDisconnect;
-    event_t<ws_t>     onConnect;
-    event_t<string_t> onMessage;
-    event_t<string_t> onWrite;
-    event_t<except_t> onError;
+    event_t<>                  onDisconnect;
+    event_t<ws_t>              onConnect;
+    event_t<string_t>          onMessage;
+    event_t<string_t>          onWrite;
+    event_t<except_t>          onError;
     event_t<string_t,string_t> onEvent;
     
     /*─······································································─*/
@@ -58,11 +53,13 @@ namespace server {
         }});
 
         stream::pipe( str, cli );
+
     }
     
     /*─······································································─*/
     
     void server( string_t host, uint port ){
+
         auto server = http::server( WebHandler ); 
                         ws::server( server );
 
@@ -87,14 +84,12 @@ namespace server {
 
         });
 
-        server.onError([]( except_t err ){
-            onError.emit( err );
-        });
+        server.onError([]( except_t err ){ onError.emit( err ); });
 
         server.listen( host, port, [=](...){
-            game::global["url"] = string::format("http://%s:%d",
-                dns::get_hostname().get(), port
-            );
+            rl::SetAttr( "url",
+                string::format("http://%s:%d",dns::get_hostname().get(), port )
+            );  console::log( "Started->", "http://localhost:4321" );
         });
     }
 

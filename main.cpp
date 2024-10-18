@@ -1,42 +1,33 @@
 #include <nodepp/nodepp.h>
-#include <nodepp/timer.h>
-#include <game/game.h>
-
-#include <server/server.h>
-#include <game/scenes.h>
-
-/*────────────────────────────────────────────────────────────────────────────*/
 
 using namespace nodepp;
 
-/*────────────────────────────────────────────────────────────────────────────*/
+#include "assets/script/game.cpp"
+#include "assets/script/server.cpp"
+#include "assets/scenes/scene_0.cpp"
+#include "assets/scenes/scene_1.cpp"
 
-onMain([](){
-game::start( 0, 0, 60, "ScreenDraw" );
-    
-    /*─······································································─*/
+void onMain() {
 
-    game::onClose([](){ console::log("closed"); process::exit(1); });
+    rl::Init( { 300, 350 }, 60, "Raylib Screen Board" );
+
+    rl::AppendScene( rl::scene::scene_0 );
+
+    rl::onClose([](){ 
+        console::log("closed"); 
+        rl::Close();
+    });
     
     /*─······································································─*/
 
     server::server( "0.0.0.0", 4321 );
     
-    /*─······································································─*/
-
-    game::scene1::load();
-    
     server::onConnect([=](...){
-        game::remove_all();
-        game::scene2::load();
+      rl::AppendScene( rl::scene::scene_1 );
     });
 
     server::onDisconnect([](){
-        game::remove_all();
-        game::scene1::load();
+      rl::AppendScene( rl::scene::scene_0 );
     });
     
-    /*─······································································─*/
-
-game::stop();
-})
+}
