@@ -1,5 +1,5 @@
 # Raylib Screen Board
-Is a simple but smart way to draw in your computer's screen using an external device
+It is a simple raylib app that let you draw in your computer using an external device
 
 ## Dependencies
 ```bash
