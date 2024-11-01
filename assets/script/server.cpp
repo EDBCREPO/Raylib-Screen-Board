@@ -27,7 +27,7 @@ namespace server { using namespace nodepp;
 
         for( auto &x: cli.query.data() ){
              onEvent.emit( x.first, x.second );
-             cli.write_header( 200, {{ }});
+             cli.write_header( 200, header_t());
              cli.write("done"); return;
         }
 
@@ -38,18 +38,18 @@ namespace server { using namespace nodepp;
         console::log( cli.path, cli.get_fd() );
 
         if( !fs::exists_file(dir) ){
-            cli.write_header( 404, {{ { "content-type", "text/plain" } }} );
+            cli.write_header( 404, header_t({ { "content-type", "text/plain" } }) );
             cli.write( "Opps 404 Error" ); 
             cli.close(); return;
         }
 
         auto str = fs::readable( dir );
 
-        cli.write_header( 200, {{
+        cli.write_header( 200, header_t({
             { "Content-Length", string::to_string(str.size()) },
             { "Cache-Control", "public, max-age=3600" },
             { "Content-Type",   path::mimetype(dir) }
-        }});
+        }));
 
         stream::pipe( str, cli );
 
