@@ -6,17 +6,10 @@ namespace rl { namespace scene {
 
         auto url = GetAttr("url").as<string_t>();
         auto a   = ptr_t<uint>({ 0, 360, 0 });
-
-        SetWindowSize( 300, 325 ); /*
-        ClearWindowState( FLAG_WINDOW_MOUSE_PASSTHROUGH |
-                              FLAG_WINDOW_UNDECORATED   | 
-                              FLAG_WINDOW_TOPMOST       |
-                              FLAG_FULLSCREEN_MODE      |
-                              FLAG_WINDOW_UNFOCUSED     );
-        */
+        auto Sx  = GetRenderWidth(), Sy = GetRenderHeight();
 
         self->onDraw([=](){
-            ClearBackground({ 40, 40, 40, 255 });
+            ClearBackground( BLANK );
 
             DrawText( url.get(), 20, 10, 20, WHITE );
             DrawText( "waiting new device", 60, 265, 20, WHITE );

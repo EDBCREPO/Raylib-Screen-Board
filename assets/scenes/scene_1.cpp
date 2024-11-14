@@ -27,19 +27,8 @@ namespace rl { namespace scene {
             return Color({ r, g, b, 255 });
         });
 
-        auto X  = GetCurrentMonitor();
-        auto Sx = 300; // GetMonitorWidth(X);
-        auto Sy = 325; // GetMonitorHeight(X);
-
-        SetWindowSize( Sx, Sy ); /*
-        SetWindowState( FLAG_WINDOW_MOUSE_PASSTHROUGH |
-                            FLAG_WINDOW_UNDECORATED   |
-                            FLAG_WINDOW_UNFOCUSED     | 
-                            FLAG_FULLSCREEN_MODE      |
-                            FLAG_WINDOW_TOPMOST       );
-        */
-
-        obj->color = BLACK;
+        auto Sx = GetRenderWidth(), Sy = GetRenderHeight();
+        obj->color = BLANK;
 
         auto ide = server::onEvent([=]( string_t a, string_t b ){
             if( a == "opacity" ){ obj->color.a = string::to_int(b); }
